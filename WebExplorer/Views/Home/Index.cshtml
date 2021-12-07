@@ -1,0 +1,54 @@
+﻿@using WebExplorer.Models
+@model dynamic
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8"/>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>
+            <b>Name</b>
+        </td>
+        <td>
+            <b>Type</b>
+        </td>
+        <td>
+            <b>Size</b>
+        </td>
+        <td>
+            <b>Creation Time</b>
+        </td>
+        <td>
+            <b>Modification Time</b>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (FileSystemElement f in ViewBag.Files)
+    {
+        <tr>
+            <td>
+                @if (f.Type is FileSystemElementType.Directory or FileSystemElementType.File)
+                {
+                    <a href="@f.Path">@f.Name</a>
+                }
+                else
+                {
+                    @f.Name
+                }
+            </td>
+            <td>@f.Type</td>
+            <td>@f.Size</td>
+            <td>@f.CreationTime</td>
+            <td>@f.ModificationTime</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>
